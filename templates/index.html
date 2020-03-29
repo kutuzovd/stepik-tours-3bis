@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+    <!-- HERO -->
+
+    <div class="jumbotron text-center mt-4">
+      <h1 class="display-4">Всякие туры</h1>
+      <p class="lead">{{ subtitle }}</p>
+      <p class="mt-5 w-50 mx-auto">{{ description }}</p>
+    </div>
+
+    <!-- CARDS -->
+
+    <div class="row mt-5" data-test="cards">
+
+        {% for tour in tours %}
+
+        <div class="col-4" data-test="card">
+            <div class="card mb-3" >
+            <img src="{{ tour.picture }}" width="300" height="200" class="card-img-top img-fluid" data-test="picture">
+            <div class="card-body">
+              <h5 class="card-title">{{ tour.title }} {{ tour.stars }}★</h5>
+             <p class="card-text">{{ tour.description|truncatewords:8 }} </p>
+                <a href="{% url 'tour_url' tour_id=tour.id %}" class="btn btn-sm btn-primary"> Подробнее</a>
+            </div>
+        </div>
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+
+
+{% endblock content %}

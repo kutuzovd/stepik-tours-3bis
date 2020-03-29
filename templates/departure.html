@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+    <h1 class="display-5 mt-4">Летим <span data-test="from">{{ depart_city }}</span></h1>
+    <p class="mb-4" >Найдено <span data-test="tourcount">{{ kol_tours }}</span> туров, с <span data-test="pricemin"> ценой от {{ min_price }}</span> до <span data-test="pricemax">{{ max_price }}</span> и от <span data-test="nightsmax">{{ min_nights }}</span> до <span data-test="nightsmax">{{ max_nights }}</span> ночей</p>
+    <!-- HERO -->
+
+    <!-- CARDS -->
+
+      <div class="row mt-5">
+
+          {% for tour in depart_tours %}
+
+        <div class="col-4">
+            <div class="card mb-3" >
+            <img src="{{ tour.picture }}" class="card-img-top img-fluid" data-test="picture">
+            <div class="card-body">
+              <h5 class="card-title">{{ tour.title }}</h5>
+             <p class="card-text">{{ tour.description|truncatewords:8 }}</p>
+                <a href="{% url 'tour_url' tour_id=tour.id %}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+            </div>
+        </div>
+        </div>
+
+        {% endfor %}
+    </div>    
+
+{% endblock content %}

@@ -1,0 +1,4 @@
+$ cat .gitignore
+/env
+/.idea
+*.sqlite3
